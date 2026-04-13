@@ -62,7 +62,9 @@ try (Apex2CJson apex = new Apex2CJson()) {
   
   
 Deserialization (File/String -> Java Object)  
-  
+
+import io.github.devlaskowski.apex2c.Apex2CJson;  
+...  
 // Static "Safe" way  
 // Returns 'LoadedContent' to allow manual buffer recycling  
 LoadedContent content = Apex2CJava.loadJson("data.json");  

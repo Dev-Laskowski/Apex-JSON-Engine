@@ -48,6 +48,6 @@ Lead Developer: Michael Laskowski
 Credentials: CEO | International Certified Software Engineer
 LinkedIn: [Michael Laskowski | Profile & Professional Credentials](https://www.linkedin.com/in/michael-laskowski-8885a4375/)
 Subject: [License Inquiry] Apex2 Professional / XZ-Series
-To: micha.laskowski@yahoo.com
+To: https://github.com/Dev-Laskowski/Apex-JSON-Engine/
 
 *Simply send a short message with your company name, and we will get back to you with the licensing details.*

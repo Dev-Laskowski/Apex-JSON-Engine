@@ -75,7 +75,7 @@ Apex is designed to ensure business continuity. We do not hard-lock critical inf
 To maintain transparency and allow organizations to plan their infrastructure budgets, please note the operational behavior of an expired commercial license:
 - **Baseline Fallback Mode:** Upon expiration, the engine disengages its premium hardware acceleration and parallel execution pipelines.
 - **Throttled Execution:** The engine will fall back to baseline linear I/O or introduce operation-anchored waits. This results in a noticeable increase in processing latency.
-- **Log Indicators:** A clear notification will alert your team daily: `UNLICENSED MODE (HYPER PERFORMANCE DEACTIVATED) ❗`
+- **Log Indicators:** A clear notification will alert your team daily: `UNLICENSED MODE (HYPER PERFORMANCE DEACTIVATED) ❗` or `UNSAFE MODE (PRE-PARSER SHIELD DEACTIVATED) ❗`
 
 By integrating Apex, the purchasing organization acknowledges that continuous operation in an unoptimized state is a fallback measure only. The user assumes full responsibility for monitoring license dates and managing any operational latency resulting from continued use of an expired license.
 

@@ -446,3 +446,4 @@ resource management.
 - **Contact:** [Open an Inquiry on GitHub](https://github.com[License+Inquiry]+Apex2+Professional+/+XZ-Series)  
 
 Clicking the link will prepare a formal inquiry template. Please provide your corporate entity details and a brief overview of your deployment scale. Our executive team will facilitate the licensing documentation and technical onboarding details.
+  

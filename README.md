@@ -313,6 +313,7 @@ Even in our 100% free Community Edition (Apex2C), infrastructure safety is not a
 - **Usage:** Commercial environments and for-profit applications.  
 - **Goal:**  Drastically reduce cloud bills and process massive data loads on constrained instances.
 - **Business Case:** Engineered to cut operational overhead. The annual license fee is typically covered by your monthly server cost savings within the first few weeks.
+- **License Expiry Behavior:** Apex is engineered for business continuity. If a commercial license expires, the engine will not lock your infrastructure. Instead, it transitions to standard processing. The log will display `UNLICENSED MODE (HYPER PERFORMANCE DEACTIVATED) ❗` and the engine operates without the premium speed-optimization delta.
   
   
 #### Inside the Apex-M Engine (High-Efficiency Build-Time Security)
@@ -332,7 +333,8 @@ To fit into strict memory limits and maximize edge-computing hardware density, t
 - **Usage:** Ideal for applications transitioning from internal to public, untrusted data streams.
 - **Goal:**  Cost-effective deployment of the Sentinel Shield defense.
 - **Positioning:** The entry-level model for high performance and heavy security.
-  
+- **License Expiry Behavior:** Apex values zero-downtime architectures. Upon license expiration, your system remains operative, but the pre-parse security firewall is disengaged. The log will display `UNSAFE MODE (PRE-PARSER SHIELD DEACTIVATED) ❗`. Immediate renewal is highly recommended to restore active DoS and payload protection.  
+
   
 #### Uncompromised Security, Balanced Performance
 
@@ -371,7 +373,8 @@ Apex2MSJava.parseJson(filePath, maxNesting, maxStringLength, maxDigits, maxObjec
 - **Usage:** Mission-critical infrastructure handling untrusted public data.
 - **Goal:**  Prevention of "Poison JSON", DoS attacks (Apex-S/MS), and structural exploits.
 - **Business Case:** Advanced, proactive infrastructure protection and zero-downtime architecture.
-  
+- **License Expiry Behavior:** Apex values zero-downtime architectures. Upon license expiration, your system remains operative, but the pre-parse security firewall is disengaged. The log will display `UNSAFE MODE (PRE-PARSER SHIELD DEACTIVATED) ❗`. Immediate renewal is highly recommended to restore active DoS and payload protection.  
+
   
 #### Double-Layer Defense: The Apex Sentinel & Build-Time Shield
 
@@ -389,7 +392,8 @@ The Enterprise edition combines both of Apex's protective technologies into a ze
 - **Usage:** Massive-scale AI training, data context ingestion, and scientific research.
 - **Goal:** Processing extreme datasets across the entire spectrum—from Gigabytes to Exabytes.
 - **Business Case:** Engineered for environments where information density and throughput are critical.
-  
+- **License Expiry Behavior:** Since ApexIO is built for extreme data throughput, an expired license disengages the advanced hardware-level parallel execution pipelines. The log will alert you with `UNLICENSED MODE (HYPER PERFORMANCE DEACTIVATED) ❗` and the system will fall back to baseline linear I/O execution.  
+
   
 #### Direct-to-Memory Hardware Pushing
 

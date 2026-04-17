@@ -194,7 +194,7 @@ An Apex license provides high-level infrastructure insurance. By eliminating the
   
 ---  
 
-## 🧬 Edge-Case Survival & Smart Throttling Proof
+## Edge-Case Survival & Smart Throttling Proof
 
 To validate Apex's resilience under extreme resource starvation, we heavily restricted the runtime environment. 
 

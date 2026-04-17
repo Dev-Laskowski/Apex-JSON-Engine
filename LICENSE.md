@@ -68,6 +68,19 @@ Our goal is a healthy, long-term collaboration where both sides benefit from a s
 
 ---  
 
+## License Expiration & Continuous Operations
+
+Apex is designed to ensure business continuity. We do not hard-lock critical infrastructure or induce production blackouts on the day of license expiration. 
+
+To maintain transparency and allow organizations to plan their infrastructure budgets, please note the operational behavior of an expired commercial license:
+- **Baseline Fallback Mode:** Upon expiration, the engine disengages its premium hardware acceleration and parallel execution pipelines.
+- **Throttled Execution:** The engine will fall back to baseline linear I/O or introduce operation-anchored waits. This results in a noticeable increase in processing latency.
+- **Log Indicators:** A clear notification will alert your team daily: `UNLICENSED MODE (HYPER PERFORMANCE DEACTIVATED) ❗`
+
+By integrating Apex, the purchasing organization acknowledges that continuous operation in an unoptimized state is a fallback measure only. The user assumes full responsibility for monitoring license dates and managing any operational latency resulting from continued use of an expired license.
+
+---  
+
 ## Architecture & Leadership
 The Apex Engine is the result of advanced research into high-concurrency 
 resource management. 

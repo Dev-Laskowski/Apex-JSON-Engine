@@ -69,15 +69,16 @@ You define the boundaries of your data ingestion to prevent resource exhaustion 
 
 - **Nesting Depth:** Default 1,000 (Validated up to 10,500 levels).
 - **String Length:** Default 20 MB (Prevents massive string buffer allocation).
+- **Digit Count:** Default 50 (Neutralizes CPU/RAM exhaustion from massive scientific notation or BigDecimal overflows).
 - **Object Count:** Default 100,000 (Ensures predictable Heap utilization).
   
   
 ### API Implementation Example:
 
 ```java
-// Total control over Nesting, String length, and Object counts
-Apex2MSJava.parseJson(filePath, maxNesting, maxStringLength, maxObjects);
-Apex2MSJava.parseJsonUnsave(data, maxNesting, maxStringLength, maxObjects);
+// Total control over Nesting, String length, Digit count, and Object counts
+Apex2MSJava.parseJson(filePath, maxNesting, maxStringLength, maxDigits, maxObjects);
+Apex2MSJava.parseJsonUnsave(data, maxNesting, maxStringLength, maxDigits, maxObjects);
 ```
   
   
@@ -191,8 +192,57 @@ Active Heap Load       Operates at ~35% capacity         Minimizes garbage colle
 
 An Apex license provides high-level infrastructure insurance. By eliminating the risks of memory fragmentation and uncontrolled execution, you maximize the lifespan and density of your existing hardware while securing your operations against unexpected spikes.
   
+---  
+
+## 🧬 Edge-Case Survival & Smart Throttling Proof
+
+To validate Apex's resilience under extreme resource starvation, we heavily restricted the runtime environment. 
+
+**Test Parameters:**
+- **Max Heap:** `128 MB` (`-Xmx128m`)
+- **Pre-Allocated Load:** Up to `118 MB` locked by a dummy byte array.
+- **Resulting Workspace:** Less than `10 MB` remaining for the entire JVM, garbage collection, and application logic.
+
+
+### Scenario A: Smart Object Dropping under Critical Starvation
+When pushed to the absolute limit while attempting to read the large `canada_provinces.geojson`, the engine hits the wall. Instead of a hard crash, it generates a single log line and instantly moves to the next task to keep the thread alive. 
+
+```text
+STATUS: [ULTRA STABLE] - Rock solid performance.
+RESULT: Apex2C serialize benchmark, compact: false processed: canada_provinces.geojson
+runs: 100 | time: 0 ms / 394,048 ns | average: 0 ms (3,940 ns)
+
+Critical: Out of memory: Reached Java heap space.
+```
+
+
+### Scenario B: Smart Triage Under Heavy Starvation
+In a heavily starved environment where only ~5 MB of free heap remained, Apex was still able to fully process the `twitter.json` payload, while dropping larger files like `citm_catalog` to protect the JVM.
+
+```text
++---------------+---------------+---------------+
+| Phase         | Used MB       | Reserved MB   +
++---------------+---------------+---------------+
+| BASELINE      |        122.65 |        128.00 |
+| ACTIVE (RUN)  |        126.63 |        128.00 |
+| BREAK 5s      |        122.70 |        128.00 |
+| BREAK 10s     |        122.68 |        128.00 |
++---------------+---------------+---------------+
+| Metric                  | Values ms           |
++-------------------------+---------------------+
+| Median                  |            2332.434 |
+| Average                 |            2332.434 |
++-------------------------+---------------------+
+STATUS: [ULTRA STABLE] - Rock solid performance.
+RESULT: Apex2C deserialize benchmark processed: twitter.json
+runs: 1 | time: 2,332 ms / 2,332,434,151 ns | average: 2,332 ms
+```
+
+The Business Result: No total blackout. While standard parsers would hard-crash the entire thread on the first unfulfilled allocation, Apex applies a "Smart Triage" strategy. It keeps smaller operations running while safely logging the memory exhaustion of larger tasks—giving your developers the time to investigate the leak without your entire infrastructure going down.
+
+---  
   
-### Operational Freedom: No More 3 AM Emergency Calls
+## Operational Freedom: No More 3 AM Emergency Calls
 
 System crashes due to unexpected payloads or malformed JSON always happen at the worst possible time. Apex is engineered to give your DevOps and on-call engineers their nights back.
   
@@ -241,6 +291,19 @@ While Apex focuses on stability and security, its ultra-efficient NIO-core natur
 - **Usage:** Strictly private, non-professional use on local personal machines.  
 - **Goal:**  Fastest possible parsing for trusted data.  
 - **Cost:**  100% FREE (Personal Use Only).  
+
+
+#### Apex: Community Protection
+
+Even in our 100% free Community Edition (Apex2C), infrastructure safety is not an afterthought. While we leave object counts open for maximum flexibility, the engine comes with hardcoded edge-case protection out-of-the-box to prevent malicious payloads from locking up your CPU and memory:
+
+- **Max String Length:** Capped at 20 MB (Prevents massive string buffer allocation).
+- **Max Digit Count:** Capped at 50 digits (Neutralizes CPU/RAM exhaustion from massive BigDecimals).
+- **Infinite Structure Defense:** While there is no hard object limit, both deep nesting and memory exhaustion are safely intercepted at the framework level. The engine gracefully aborts before your JVM crashes.
+
+*Note: For granular, per-call configuration over all safety envelopes and access to the pre-parse Sentinel Shield firewall, please refer to the Professional or Enterprise editions.*
+
+
   
   
 ### 2. Apex M (The Efficiency Master)  
@@ -249,17 +312,18 @@ While Apex focuses on stability and security, its ultra-efficient NIO-core natur
 
 - **Usage:** Commercial environments and for-profit applications.  
 - **Goal:**  Drastically reduce cloud bills and process massive data loads on constrained instances.
-- **Business Case:** License fee is typically covered by monthly server savings.  
+- **Business Case:** Engineered to cut operational overhead. The annual license fee is typically covered by your monthly server cost savings within the first few weeks.
   
   
 #### Inside the Apex-M Engine (High-Efficiency Build-Time Security)
 
-To fit into strict memory limits, the Apex-M engine featured in this edition utilizes an optimized operational strategy compared to the full Sentinel Shield:
+To fit into strict memory limits and maximize edge-computing hardware density, the Apex-M engine featured in this edition utilizes an optimized operational strategy:
 
 - **Build-Time Validation:** Instead of using a separate Pre-Parse layer (Sentinel), Apex-M integrates its core security directly into the object generation phase. It evaluates data structural safety in real-time as it maps to the Heap.
-- **Graceful Failure over Corruption:** If malformed data or improper nesting attempts to leak through (e.g., missing map keys, unexpected commas, or unclosed strings), the engine immediately intercepts the error, returns null, and prevents corrupt or partial objects from entering your business logic.
+- **Graceful Failure over Corruption:** If malformed data or improper nesting attempts to leak through, the engine immediately intercepts the error, returns null, and prevents corrupt or partial objects from entering your business logic.
+- **Pre-Tuned Safety Envelopes:** To maximum throughput and prevent misconfigurations from burning your small-instance resources, this edition comes with hardcoded, highly optimized safety thresholds identical to the baseline protection profile (20 MB strings / 50 digits).
 - **The Result:** Maximum hardware density and a hyper-lean memory footprint without sacrificing your system's stability.
-  
+
   
 ### 3. Apex S (The Shield)
 
@@ -278,8 +342,28 @@ Apex-S shares its core defensive DNA directly with the Enterprise edition:
 - **In-Build Protection:** It also retains the deep "build-time" safety layers to prevent fatal system crashes.
 - **The Trade-Off:** To make this engine more accessible, Apex-S is not as aggressively memory-aware as the premium Apex-MS line and does not reach the same absolute peak parsing speeds.
 - **The Result:** You get massive, fortress-like infrastructure protection without paying for the highest-end enterprise operational optimizations.
+
+
+#### Configurable Safety Envelopes (Apex-S & Apex-MS Only)
+
+While our entry and efficiency models come pre-tuned to protect standard infrastructure, the advanced Apex-S and Enterprise (Apex-MS) lines give architects absolute, granular control over their environment.
   
-  
+There are no hidden configuration files or complex system properties to manage. Apex exposes the safety valves directly through the API as standard parameters:
+
+- **Dynamic Nesting Depth:** Override the default limit to support complex, highly nested legacy data trees.
+- **Dynamic String Lengths:** Scale up the memory allocation for specific ingestion calls that process heavy text payloads.
+- **Dynamic Digit Counts:** Adjust precision boundaries based on your specific scientific or financial processing needs.
+- **Dynamic Object Limits:** Hard-cap the total number of objects created per call to ensure deterministic heap utilization and prevent memory exhaustion during massive data bursts.
+
+
+##### API Implementation Example:
+```java
+// Pure transparency: Pass your exact hardware limits directly into the call
+Apex2SJava.parseJson(filePath, maxNesting, maxStringLength, maxDigits, maxObjects);
+Apex2MSJava.parseJson(filePath, maxNesting, maxStringLength, maxDigits, maxObjects);
+```
+
+    
 ### 4. Apex MS (The Fortress)
 
 *Best for: Corporations, Banks, and High-Traffic Platforms.*

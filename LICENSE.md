@@ -58,8 +58,13 @@ Commercial licensing is restricted to organizations that demand the highest tier
 
 ---  
 
-## Continuous Operations Guarantee
-Apex does not believe in hard-locking critical infrastructure or inducing production blackouts on the day of license expiration. If a commercial license expires, the system remains fully operative to ensure business continuity, though it will fall back to baseline execution modes. A log notice will remind your team of the expired status.
+## The Principle of Mutual Trust & Business Continuity
+
+Apex is built on trust. We trust our users just as much as they rely on Apex to keep their infrastructure safe. We believe that true business partnerships are not forged through digital hard-locks or artificial production blackouts. 
+
+If a commercial license expires, the system will not paralyze your operations. It is designed to remain active and operative to ensure your business continues to generate value, seamlessly transitioning into a baseline execution mode. A non-intrusive log notice will simply remind your team of the expired status so we can align on the renewal. 
+
+Our goal is a healthy, long-term collaboration where both sides benefit from a stable, high-performing environment.
 
 ---  
 

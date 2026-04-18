@@ -1,0 +1,59 @@
+name: "Technical Support & Bug Report"
+description: "Report a technical issue or unexpected behavior."
+title: "[BUG] - <Brief Description>"
+labels: ["bug", "technical-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Technical Triage
+        Thank you for helping improve the **Apex JSON/JSON5 Engine**. Please provide as much detail as possible so we can maintain the high standards of the NIO-core.
+
+  - type: dropdown
+    id: edition
+    attributes:
+      label: "Which Edition are you using?"
+      options:
+        - "Apex Community (C)"
+        - "Apex Professional (M)"
+        - "Apex Shielded (S)"
+        - "Apex Enterprise (MS)"
+        - "Apex IO-Titan"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: "Environment Details"
+      placeholder: "e.g., Java 21 (OpenJDK), Windows 11, 128MB Heap"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "Steps to Reproduce"
+      placeholder: |
+        1. Load file 'xyz.json'
+        2. Set maxNesting to 500
+        3. Call parseJson()
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Relevant Logs or Forensic Output"
+      description: "Please paste the console output, including the Apex Header and any specific Json Error lines."
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Final Verification"
+      options:
+        - label: "I have verified that this issue is not caused by environment constraints (OOM/StackSize)."
+          required: true
+        - label: "I am using the latest version of the Apex JAR."
+          required: true

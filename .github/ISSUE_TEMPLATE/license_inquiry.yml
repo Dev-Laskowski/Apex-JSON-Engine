@@ -1,0 +1,61 @@
+name: "Strategic License Inquiry"
+description: "Request a quote for Professional, Enterprise, or IO-Titan editions."
+title: "[Strategic Inquiry] - <Your Company Name>"
+labels: ["license-request", "strategic"]
+assignees: ["Dev-Laskowski"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Strategic Partnership Request
+        Thank you for choosing the **Apex JSON/JSON5 Engine** for your infrastructure. Please complete this form to facilitate the licensing documentation and technical onboarding.
+
+  - type: input
+    id: company
+    attributes:
+      label: "Company / Organization Name"
+      placeholder: "e.g., Global Tech Solutions GmbH"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: edition
+    attributes:
+      label: "Which Edition are you interested in?"
+      options:
+        - "Apex Professional (M) - €600/year"
+        - "Apex Standard (S) - Shielded"
+        - "Apex Enterprise (MS) - The Fortress"
+        - "ApexIO - The IO-Titan"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scale
+    attributes:
+      label: "Deployment Scale"
+      options:
+        - "Startup / Independent Project"
+        - "Small-to-Medium Enterprise (SME)"
+        - "Global Corporate / Financial Sector"
+        - "Scientific Research / HPC"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Brief Deployment Overview"
+      placeholder: "e.g., High-frequency trading, IoT Edge processing, etc."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "Compliance & Trust"
+      options:
+        - label: "I understand that Apex is provided 'AS IS' as high-performance engineering research."
+          required: true
+        - label: "I am authorized to request licensing information for my organization."
+          required: true

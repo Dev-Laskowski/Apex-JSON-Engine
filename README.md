@@ -443,7 +443,10 @@ resource management.
   
 ### Direct License Inquiries
 - **Subject:** [Strategic Inquiry] Apex2 Professional / IO-Series
-- **Contact:** [Open an Inquiry on GitHub](https://github.com/Dev-Laskowski/Apex-JSON-Engine/?template=license_inquiry.yml&title=Apex2+Professional+/+IO-Series)  
+- **Contact:** [Open an Inquiry on GitHub](https://github.com/Dev-Laskowski/Apex-JSON-Engine/issues/new/?template=license_inquiry.yml&title=[Strategic+Inquiry]+Apex2+Professional+/+IO-Series)  
+
+
+
 
 Clicking the link will prepare a formal inquiry template. Please provide your corporate entity details and a brief overview of your deployment scale. Our executive team will facilitate the licensing documentation and technical onboarding details.
   

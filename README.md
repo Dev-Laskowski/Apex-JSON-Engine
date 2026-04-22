@@ -300,6 +300,7 @@ Even in our 100% free Community Edition (Apex2C), infrastructure safety is not a
 - **Max String Length:** Capped at 20 MB (Prevents massive string buffer allocation).
 - **Max Digit Count:** Capped at 50 digits (Neutralizes CPU/RAM exhaustion from massive BigDecimals).
 - **Infinite Structure Defense:** While there is no hard object limit, both deep nesting and memory exhaustion are safely intercepted at the framework level. The engine gracefully aborts before your JVM crashes.
+- **Maintenance Awareness:** To ensure long-term stability and security, the engine requires a yearly update. If the JAR is after the license period, a 1% performance penalty per day is applied to the final wait time to encourage using the latest, most secure build.
 
 *Note: For granular, per-call configuration over all safety envelopes and access to the pre-parse Sentinel Shield firewall, please refer to the Professional or Enterprise editions.*
 

@@ -1,57 +1,84 @@
-name: "Technical Support & Bug Report"
-description: "Report a technical issue or unexpected behavior."
-title: "[BUG] - <Brief Description>"
-labels: ["bug", "technical-triage"]
+name: "Technical Support & Incident Triage"
+description: "Report a deterministic engine failure, security-bypass, or unexpected processing anomaly."
+title: "[INCIDENT] - <Brief Anomaly Description>"
+labels: ["bug", "technical-triage", "high-priority"]
 body:
   - type: markdown
     attributes:
       value: |
-        ### Technical Triage
-        Thank you for helping improve the **Apex JSON/JSON5 Engine**. Please provide as much detail as possible.
+        ### 🛡️ AICSS™ Engine Incident Response
+        Thank you for initiating the triage process for the **Apex Architecture Suite**. 
+        To isolate the execution path anomaly efficiently, please supply comprehensive forensic and environment data.
 
   - type: dropdown
-    id: edition
+    id: core_engine
     attributes:
-      label: "Which Edition are you using?"
+      label: "Impacted Core Engine Component"
+      description: "Select the specific core where the processing anomaly occurred."
       options:
-        - "Apex Ultimate"
-        - "Apex RAM Titan"
-        - "Apex File Titan"
+        - "Apex JSON/JSON5 Engine Ultimate (Shield Active)"
+        - "Apex JSON/JSON5 Engine Ultimate (Shield Inactive)"
+        - "Apex JSON/JSON5 Engine RAM Titan (Shield Active)"
+        - "Apex JSON/JSON5 Engine RAM Titan (Shield Inactive)"
+        - "Apex JSON/JSON5 Engine File Titan (Shield Active)"
+        - "Apex JSON/JSON5 Engine File Titan (Shield Inactive)"
     validations:
       required: true
 
   - type: input
-    id: environment
+    id: runtime_environment
     attributes:
-      label: "Environment Details"
-      placeholder: "e.g., Java 21 (OpenJDK), Windows 11, 128MB Heap"
+      label: "JVM & OS Architecture Matrix"
+      placeholder: "e.g., Java 26.0.1 (Eclipse Adoptium), Ubuntu 24.04 LTS, Hardened Kernel"
+    validations:
+      required: true
+
+  - type: input
+    id: memory_allocation
+    attributes:
+      label: "Heap and Resource Constraints"
+      placeholder: "e.g., -Xms128m -Xmx324m, Static RAM Boundary Enforced"
     validations:
       required: true
 
   - type: textarea
-    id: reproduction
+    id: deterministic_reproduction
     attributes:
-      label: "Steps to Reproduce"
+      label: "Deterministic Steps to Reproduce"
+      description: "Detail the exact linear execution path to recreate the anomaly."
       placeholder: |
-        1. Load file 'xyz.json'
-        2. Set maxNesting to 500
-        3. Call parseJson()
+        1. Initialize XByteBuffer with specific byte sequence...
+        2. Push buffer into ApexTitanJParser...
+        3. Observe Result-Pattern output via builder.hasError()...
     validations:
       required: true
 
   - type: textarea
-    id: logs
+    id: malformed_payload
     attributes:
-      label: "Relevant Logs or Forensic Output"
-      description: "Please paste the console output, including the Apex Header and any specific Json Error lines."
+      label: "Target Payload or Schema Definition"
+      description: "Provide the specific JSON/JSON5 structure or malformed byte stream that triggered the behavior (sanitize sensitive keys)."
+      placeholder: "Pasted raw input tokens or boundary-overflow test strings here..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: forensic_logs
+    attributes:
+      label: "Profiler Logs & Forensic Output"
+      description: "Paste raw output including the PROFILER PRO PERFORMANCE ENGINE LOG header, Jitter Metrics, and the specific builder.getError() exception trace if extracted."
       render: text
+    validations:
+      required: true
 
   - type: checkboxes
-    id: checks
+    id: operational_verifications
     attributes:
-      label: "Final Verification"
+      label: "Pre-Flight Operational Compliance Checks"
       options:
-        - label: "I have verified that this issue is not caused by environment constraints (OOM/StackSize)."
+        - label: "I have verified via builder.hasError() that the JVM was shielded and no hardware-level OOM occurred."
           required: true
-        - label: "I am using the latest version of the Apex JAR."
+        - label: "I confirm this behavior occurs within a clean local thread path and is completely decoupled from external async network interference."
+          required: true
+        - label: "The core engine version in use maps strictly to the latest cryptographically signed license release."
           required: true

@@ -51,7 +51,7 @@ resource management and deterministic execution states.
 - **Role:** CEO | Internationally Certified Software Engineer
 - **Specialization:** High-Performance Low-Level Engineering, Zero-Allocation Memory Topologies, Real-Time Digital Signal Processing (DSP), and Embedded In-Engine Cryptographic Security Systems.
 
-[View Executive Profile & Innovation Track Record on LinkedIn](https://linkedin.com)
+[View Executive Profile & Innovation Track Record on LinkedIn]([https://linkedin.com](https://www.linkedin.com/in/michael-laskowski-8885a4375/))
   
 ---
 

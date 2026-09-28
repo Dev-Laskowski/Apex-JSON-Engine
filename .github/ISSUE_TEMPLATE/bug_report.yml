@@ -7,18 +7,16 @@ body:
     attributes:
       value: |
         ### Technical Triage
-        Thank you for helping improve the **Apex JSON/JSON5 Engine**. Please provide as much detail as possible so we can maintain the high standards of the NIO-core.
+        Thank you for helping improve the **Apex JSON/JSON5 Engine**. Please provide as much detail as possible.
 
   - type: dropdown
     id: edition
     attributes:
       label: "Which Edition are you using?"
       options:
-        - "Apex Community (C)"
-        - "Apex Professional (M)"
-        - "Apex Shielded (S)"
-        - "Apex Enterprise (MS)"
-        - "Apex IO-Titan"
+        - "Apex Ultimate"
+        - "Apex RAM Titan"
+        - "Apex File Titan"
     validations:
       required: true
 

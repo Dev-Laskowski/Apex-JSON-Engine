@@ -18,11 +18,11 @@ Unlike conventional, external network-layer Web Application Firewalls (WAF) that
   ```java
   try (Apex2UJParser parser = new Apex2UJParser()) { 
       // Open component with try-with-resources for guaranteed deterministic auto-close
-      ApexType container = parser.parse(data);
+      ApexType container = ApexType(parser.parse(data));
     
-      if (container.hasError()) { 
+      if (parser.hasError()) { 
           // Intercept and triage structural anomalies out-of-band
-          Throwable error = container.getError(); 
+          Throwable error = parser.getError(); 
           // Execute incident response...
       } else { 
           // Extract values via direct-addressing container with zero object footprint

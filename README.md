@@ -8,29 +8,13 @@ The **Apex Core Suite** provides raw, low-level data routing, absolute mathemati
 
 ## Integrated Shield Technology (In-Engine JVM Firewall)
 
-Every component within the Apex Core Suite features an native, toggleable **Sentinel Shield**. 
+Every component within the Apex Core Suite features a native, toggleable **Sentinel Shield**. 
 
 Unlike conventional, external network-layer Web Application Firewalls (WAF) that process payloads via latent proxy network hops, the **Sentinel Shield operates inline on a character level *before* parsing begins**. 
 * **Zero Exception Overhead:** The Shield entirely bypasses performance-killing JVM `Throwable` stacktrace captures. 
-* **Linear Execution & Zero Jitter:** It runs a deterministic, linear validation path utilizing a secure **Result-Pattern**.
-* **Structural Neutralization:** Malicious memory overflows, float exploits (Double-Bug protection), and injection strings are intercepted and contained.
-* **State Interrogation:** System health and error tracking are handled entirely out-of-band via fluent, non-allocating diagnostics:
-  ```java
-  try (Apex2UJParser parser = new Apex2UJParser()) { 
-      // Open component with try-with-resources for guaranteed deterministic auto-close
-      ApexType container = ApexType(parser.parse(data));
-    
-      if (parser.hasError()) { 
-          // Intercept and triage structural anomalies out-of-band
-          Throwable error = parser.getError(); 
-          // Execute incident response...
-      } else { 
-          // Extract values via direct-addressing container with zero object footprint
-          String userName = container.get("userName");
-          // Process business logic...
-      }
-  }
-  ```
+* **Linear Execution & Zero Jitter:** It runs a deterministic, linear validation path utilizing a secure, non-allocating Result-Pattern.
+* **Structural Neutralization:** Malicious memory overflows, float exploits (Double-Bug protection), and injection strings are intercepted and contained before the core engine engages.
+* **State Interrogation:** System health and execution triage are handled entirely out-of-band via fluent, non-allocating internal diagnostics.
 
 ---
 
@@ -38,25 +22,19 @@ Unlike conventional, external network-layer Web Application Firewalls (WAF) that
 
 ### 1. Apex Ultimate
 The premium, zero-allocation flagship engine for standard production environments, high-frequency microservices, and rapid API data manipulation.
-* **Direct-Access Container:** Implements high-speed value addressing via raw keys (`container.get("userName")`), completely removing the requirement for fragile DTO boilerplate or intermediate object mapping.
+* **Direct-Access Container:** Implements high-speed value addressing via proprietary key-mapping, completely removing the requirement for fragile DTO boilerplate or intermediate object replication.
 
 ### 2. Apex RAM Titan
 The heavy-duty infrastructure engine engineered to shatter Java's contiguous 2GB array allocation limit.
-* **The XByteBuffer Architecture:** Built for high-volume, continuous additive data ingestion. It handles multi-type accumulation streams directly out of memory or high-speed network connections without copying or resizing data buffers:
-  ```java
-  xByteBuffer.addContent(rawByte);
-  xByteBuffer.addContent(byteArray);
-  xByteBuffer.addContent(stringPayload);
-  // Direct additive ingestion -> Zero-Copy execution
-  ApexTitanJParser.parse(xByteBuffer);
-  ```
+* **The XByteBuffer Architecture:** Built for high-volume, continuous additive data ingestion. It handles multi-type accumulation streams directly out of memory or high-speed network connections without copying or resizing data buffers.
 * **High-Scale State Recovery:** Drastically accelerates the restoration of massive, complex state machines and enterprise memory grids.
 
 ### 3. Apex File Titan
 The specialized, single-memory footprint direct-mapping subsystem engineered to prevent Java's classic 3x heap multiplication trap (File Buffer ➔ Token Trees ➔ Object Instantiation).
-* **Single-Memory Mapping:** Streams raw files directly from disk.
+* **Single-Memory Mapping:** Streams raw files directly from disk into destination layouts.
 * **Zero Retention:** Holds no internal copies of the stream in memory. The data exists exactly *once* in the entire JVM—inside the final mapped user instance.
 
+---
 
 ## Air-Gapped Operational Compliance
 
